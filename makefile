@@ -5,4 +5,4 @@ redBlack.o : redBlack.c
 tree.o : tree.c tree.h
 	gcc -c tree.c -o tree.o
 clean :
-	rm redBlack
+	rm redBlack *.o
