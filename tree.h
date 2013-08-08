@@ -37,3 +37,9 @@ node* addNumber(node* parent, node* node, int value);
 // Arguments
 // current - The current node being worked on
 node* balance1(node* current);
+
+// A function the takes care of the second case in adding to a red black tree
+// Case : The current node's parent is black
+// Arguments
+// current - The current node being balanced
+node* balance2(node* current);

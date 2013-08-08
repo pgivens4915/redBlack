@@ -7,5 +7,8 @@ main(){
   // Declarations
   node* root = NULL;
   root = addNumber(NULL, root, 20);
+  root = addNumber(NULL, root, 19);
+  root = addNumber(NULL, root, 21);
+  
   printTree(root,0);
 }

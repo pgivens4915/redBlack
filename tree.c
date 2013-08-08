@@ -72,7 +72,19 @@ node* balance1(node* current){
     current->color = 'b';
     return current;
   }
+  // Elsewise go to the next case
   else {
+    return balance2(current);
+  }
+}
+
+// Case 2
+node* balance2(node* current){
+  // If the parent is black
+  if(current->parent->color == 'b'){
+    return current;
+  }
+  else{
     printf ("Operation not supported\n");
     return NULL;
   }
