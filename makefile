@@ -1,5 +1,6 @@
 redBlack : redBlack.o tree.o
 	gcc redBlack.o tree.o -o redBlack
+	./redBlack
 redBlack.o : redBlack.c
 	gcc -c redBlack.c -o redBlack.o
 tree.o : tree.c tree.h

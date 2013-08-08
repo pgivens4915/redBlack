@@ -31,3 +31,9 @@ void printBranch(node* node, int depth);
 // node   - The current node of intrest
 // value  - The value you want to add
 node* addNumber(node* parent, node* node, int value);
+
+// A function that starts balancing the red black tree
+// It will pass on to the next case if not applicable
+// Arguments
+// current - The current node being worked on
+node* balance1(node* current);

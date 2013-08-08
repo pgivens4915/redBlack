@@ -46,7 +46,7 @@ node* addNumber(node* parent, node* current, int value){
     current->right  = NULL;
     current->value  = value;
     current->color  = 'r';
-    return current;
+    return balance1(current);
   }
   // If the value is equal to what is stored, return the node
   else if (current->value == value){
@@ -62,5 +62,18 @@ node* addNumber(node* parent, node* current, int value){
   else {
     current->right = addNumber(current, current->right, value);
     return current;
+  }
+}
+
+// A function for balancing the tree, case 1
+node* balance1(node* current){
+  // If current is the root of the tree
+  if ( !(current->parent) ){
+    current->color = 'b';
+    return current;
+  }
+  else {
+    printf ("Operation not supported\n");
+    return NULL;
   }
 }
