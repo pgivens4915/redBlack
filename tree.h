@@ -43,3 +43,8 @@ node* balance1(node* current);
 // Arguments
 // current - The current node being balanced
 node* balance2(node* current);
+
+// A function that returns the color of the uncle
+// Arguments
+// current - The current node being balanced
+node* uncle(node* current);

@@ -85,7 +85,28 @@ node* balance2(node* current){
     return current;
   }
   else{
+    printf ("DEBUG : current value %i\n", current->value);
     printf ("Operation not supported\n");
+    printf ("DEBUG : uncle %i" ,uncle(current)->value);
+    return NULL;
+  }
+}
+
+// A function the finds the uncle
+node* uncle(node* current){
+  // If the parent exists
+  if (current->parent){
+    // If the left side is not equal to the current node, it is the uncle
+    if (current->parent->parent->left != current->parent){
+      return current->parent->parent->left;
+    }
+    // Else return the other side
+    else{
+      return current->parent->right;
+    }
+  }
+  // No uncle
+  else {
     return NULL;
   }
 }

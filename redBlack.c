@@ -6,9 +6,10 @@
 main(){
   // Declarations
   node* root = NULL;
-  root = addNumber(NULL, root, 20);
-  root = addNumber(NULL, root, 19);
-  root = addNumber(NULL, root, 21);
+  root = addNumber(NULL, root, 50);
+  root = addNumber(NULL, root, 25);
+  root = addNumber(NULL, root, 75);
+  root = addNumber(NULL, root, 14);
   
   printTree(root,0);
 }
