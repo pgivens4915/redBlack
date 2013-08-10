@@ -87,15 +87,16 @@ node* balance2(node* current){
   else{
     printf ("DEBUG : current value %i\n", current->value);
     printf ("Operation not supported\n");
-    printf ("DEBUG : uncle %i" ,uncle(current)->value);
+    printf ("DEBUG : gprnt %i\n", grandparent(current)->value);
+    printf ("DEBUG : uncle %i\n", uncle(current)->value);
     return NULL;
   }
 }
 
 // A function the finds the uncle
 node* uncle(node* current){
-  // If the parent exists
-  if (current->parent){
+  // If the parent and grandparent exists
+  if ((current->parent != NULL) && (current->parent->parent != NULL)){
     // If the left side is not equal to the current node, it is the uncle
     if (current->parent->parent->left != current->parent){
       return current->parent->parent->left;
@@ -105,8 +106,15 @@ node* uncle(node* current){
       return current->parent->right;
     }
   }
-  // No uncle
-  else {
-    return NULL;
+  // All other cases mean the uncle does not exist
+  return NULL;
+}
+
+// A function that finds the grandparent
+node* grandparent(node* current){
+  // If the parent exists
+  if (current->parent){
+    return current->parent->parent;
   }
 }
+

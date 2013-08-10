@@ -44,7 +44,14 @@ node* balance1(node* current);
 // current - The current node being balanced
 node* balance2(node* current);
 
-// A function that returns the color of the uncle
+// A function that returns the the uncle node
+// NOTE : Returns NULL if nothing found
 // Arguments
 // current - The current node being balanced
 node* uncle(node* current);
+
+// A function that returns the grandparent node
+// NOTE : Returns NULL if nothing found
+// Arguments
+// current - The current node being balanced
+node* grandparent(node* current);

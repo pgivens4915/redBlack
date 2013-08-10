@@ -12,4 +12,6 @@ main(){
   root = addNumber(NULL, root, 14);
   
   printTree(root,0);
+
+
 }
