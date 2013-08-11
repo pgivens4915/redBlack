@@ -50,6 +50,25 @@ void balance2(node* current);
 // current - The current node being balanced
 void balance3(node* current);
 
+// A function that takes care of the fourth case in adding to a red black tree
+// Case : Parent is red but uncle is black, and the sidedness 
+//        of the parent and current are different
+// Arguments
+// current - The current node being balanced
+void balance4(node* current);
+
+// A function that left rotates a tree
+// NOTE : Current must have a right child
+// Arguments
+// current - The node to rotate around
+void leftRotate(node* current);
+
+// A function that right rotates a tree
+// NOTE : Current must have a left child
+// Arguments
+// current - The node to rotate around
+void rightRotate(node* current);
+
 // A function that returns the the uncle node
 // NOTE : Returns NULL if nothing found
 // Arguments

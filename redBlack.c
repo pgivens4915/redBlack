@@ -8,8 +8,7 @@ main(){
   node* root = NULL;
   root = addNumber(NULL, root, 50);
   root = addNumber(NULL, root, 25);
-  root = addNumber(NULL, root, 75);
-  root = addNumber(NULL, root, 14);
+  root = addNumber(NULL, root, 30);
   
   printTree(root,0);
 

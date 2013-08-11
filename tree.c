@@ -46,6 +46,12 @@ node* addNumber(node* parent, node* current, int value){
     current->right  = NULL;
     current->value  = value;
     current->color  = 'r';
+    if (current->parent && current->value < parent->value){
+      parent->right = current;
+    }
+    else if (current->parent){
+      parent->left = current;
+    }
     balance1(current);
     return current;
   }
@@ -56,12 +62,12 @@ node* addNumber(node* parent, node* current, int value){
   }
   // If the value is less than, add it to the left
   else if (current->value < value){
-    current->left = addNumber(current, current->left, value);
+    addNumber(current, current->left, value);
     return current;
   }
   // Else it is greater than
   else {
-    current->right = addNumber(current, current->right, value);
+     addNumber(current, current->right, value);
     return current;
   }
 }
@@ -96,20 +102,83 @@ void balance2(node* current){
 // A function that balances the third case
 void balance3(node* current){
   // If the uncle exists and both the parent and the uncle are red
-  if(uncle(current) &&
-    (uncle(current)->color == 'r' && current->parent->color == 'r')){
-   // Recolor the uncle, the parent, and the grandparent
-   uncle(current)->color       = 'b';
-   current->parent->color      = 'b';
-   grandparent(current)->color = 'r';
-   // Balance the grandparent
-   balance1(grandparent(current));
-   return;
+  if (uncle(current) != NULL &&
+      (uncle(current)->color == 'r' && current->parent->color == 'r')){
+    // Recolor the uncle, the parent, and the grandparent
+    uncle(current)->color       = 'b';
+    current->parent->color      = 'b';
+    grandparent(current)->color = 'r';
+    // Balance the grandparent
+    balance1(grandparent(current));
+    return;
   }
   else{
-    printf ("DEBUG :: Inserted %i\n", current->value);
-    printf ("Operation not supported\n");
+    balance4(current);
     return;
+  }
+}
+
+// A function for the fourth case
+void balance4(node* current){
+  // The uncle has to be black and the parent has to be red since
+  // The parent has to be red otherwise case 2
+  // The uncle has to be black otherwise case 3
+
+  // Right Handed side, current is on the right and parent is on the left
+  if (grandparent(current)->left == current->parent &&
+      current ==  current->parent->right){
+    // Left rotate at parent
+    leftRotate(current->parent);
+    // Move on to balance5
+  }
+
+  // Left handed side
+  else if (grandparent(current)->right == current->parent &&
+      current == current->parent->left){
+    // Right rotate at parent
+    rightRotate(current->parent);
+    // Move on to balance5
+  }
+
+}
+
+// A function that left rotates a tree
+void leftRotate(node* current){
+  // Saving a pointer to the child
+  node* a = current->parent;
+  node* b = current;
+  node* c = current->right;
+  node* cLeft = c->left;
+  // Swap parents
+  a->left   = c;
+  c->parent = a;
+  c->left   = b;
+  b->parent = c;
+  // Swap children
+  b->right = cLeft;
+  // If the left child of c exists
+  if(cLeft){
+    cLeft->parent = b;
+  }
+}
+
+// A function that right rotates a tree
+void rightRotate(node* current){
+  // Saving a pointer to the child
+  node* a = current->parent;
+  node* b = current;
+  node* c = current->left;
+  node* cRight = c->right;
+  // Swap parents
+  a->right    = c;
+  c->parent   = a;
+  c->right    = b;
+  b->parent   = c;
+  // Swap children
+  b->left = cRight;
+  // If the right child of c exists
+  if(cRight){
+    cRight->parent = b;
   }
 }
 
@@ -123,7 +192,7 @@ node* uncle(node* current){
     }
     // Else return the other side
     else{
-      return current->parent->right;
+      return current->parent->parent->right;
     }
   }
   // All other cases mean the uncle does not exist
