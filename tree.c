@@ -46,7 +46,8 @@ node* addNumber(node* parent, node* current, int value){
     current->right  = NULL;
     current->value  = value;
     current->color  = 'r';
-    return balance1(current);
+    balance1(current);
+    return current;
   }
   // If the value is equal to what is stored, return the node
   else if (current->value == value){
@@ -66,30 +67,49 @@ node* addNumber(node* parent, node* current, int value){
 }
 
 // A function for balancing the tree, case 1
-node* balance1(node* current){
+void balance1(node* current){
   // If current is the root of the tree
   if ( !(current->parent) ){
     current->color = 'b';
-    return current;
+    return;
   }
   // Elsewise go to the next case
   else {
-    return balance2(current);
+    // Go on to the next cases
+    balance2(current);
+    return;
   }
 }
 
 // Case 2
-node* balance2(node* current){
+void balance2(node* current){
   // If the parent is black
   if(current->parent->color == 'b'){
-    return current;
   }
   else{
-    printf ("DEBUG : current value %i\n", current->value);
+    // Go on to the next cases
+    balance3(current);
+  }
+  return;
+}
+
+// A function that balances the third case
+void balance3(node* current){
+  // If the uncle exists and both the parent and the uncle are red
+  if(uncle(current) &&
+    (uncle(current)->color == 'r' && current->parent->color == 'r')){
+   // Recolor the uncle, the parent, and the grandparent
+   uncle(current)->color       = 'b';
+   current->parent->color      = 'b';
+   grandparent(current)->color = 'r';
+   // Balance the grandparent
+   balance1(grandparent(current));
+   return;
+  }
+  else{
+    printf ("DEBUG :: Inserted %i\n", current->value);
     printf ("Operation not supported\n");
-    printf ("DEBUG : gprnt %i\n", grandparent(current)->value);
-    printf ("DEBUG : uncle %i\n", uncle(current)->value);
-    return NULL;
+    return;
   }
 }
 

@@ -36,13 +36,19 @@ node* addNumber(node* parent, node* node, int value);
 // It will pass on to the next case if not applicable
 // Arguments
 // current - The current node being worked on
-node* balance1(node* current);
+void balance1(node* current);
 
 // A function the takes care of the second case in adding to a red black tree
 // Case : The current node's parent is black
 // Arguments
 // current - The current node being balanced
-node* balance2(node* current);
+void balance2(node* current);
+
+// A function that takes care of the third case in adding to a red black tree
+// Case : Both parent and uncle are red
+// Arguments
+// current - The current node being balanced
+void balance3(node* current);
 
 // A function that returns the the uncle node
 // NOTE : Returns NULL if nothing found
