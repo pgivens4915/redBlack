@@ -141,6 +141,10 @@ void balance4(node* current){
     // Move on to balance5
     balance5(current);
   }
+  else{
+    balance5(current->parent);
+  }
+  
 
 }
 
