@@ -57,6 +57,12 @@ void balance3(node* current);
 // current - The current node being balanced
 void balance4(node* current);
 
+// A function that takes care of the last case
+// Case :: The uncle is black and the parent is red, the sidedness
+//         is the same
+// Arguments 
+// current - The current node being balanced
+void balance5(node* current);
 // A function that left rotates a tree
 // NOTE : Current must have a right child
 // Arguments

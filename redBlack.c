@@ -10,7 +10,18 @@ main(){
   root = addNumber(NULL, root, 25);
   root = addNumber(NULL, root, 30);
   
+  root = findRoot(root);
+
   printTree(root,0);
 
 
+}
+
+findRoot(node* current){
+  if (current->parent){
+    return findRoot(current->parent);
+  }
+  else{
+    return current;
+  }
 }

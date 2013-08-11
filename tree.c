@@ -130,6 +130,7 @@ void balance4(node* current){
     // Left rotate at parent
     leftRotate(current->parent);
     // Move on to balance5
+    balance5(current);
   }
 
   // Left handed side
@@ -138,8 +139,26 @@ void balance4(node* current){
     // Right rotate at parent
     rightRotate(current->parent);
     // Move on to balance5
+    balance5(current);
   }
 
+}
+
+// A function for the fifth case of adding ot a red black tree
+void balance5(node* current){
+ // We assume that there is no other case 
+ // Right case
+ printf("parent %i\n", current->parent->value);
+ if (current == current->parent->left){
+   rightRotate(current->parent);
+   current->color        = 'b';
+   current->right->color  = 'r';
+ }
+ else{
+   leftRotate(current->parent);
+   current->color        = 'b';
+   current->left->color = 'r';
+ }
 }
 
 // A function that left rotates a tree
@@ -150,7 +169,9 @@ void leftRotate(node* current){
   node* c = current->right;
   node* cLeft = c->left;
   // Swap parents
+  if(a){
   a->left   = c;
+  }
   c->parent = a;
   c->left   = b;
   b->parent = c;
@@ -170,7 +191,9 @@ void rightRotate(node* current){
   node* c = current->left;
   node* cRight = c->right;
   // Swap parents
+  if(a){
   a->right    = c;
+  }
   c->parent   = a;
   c->right    = b;
   b->parent   = c;
